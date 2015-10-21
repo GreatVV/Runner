@@ -9,22 +9,27 @@ public class WorldMovingTest
     [Test]
     public void WorldMove()
     {
-        var expectedMove = new Vector3(5, 0, 0);
-        var world = GetSimpleWorld();
-        var mover = GetMover();
-
-
-
-
+        var expectedPosition = new Vector3(-10, 0, 0);
+        var move = new Vector3(5, 0, 0);
+        var world = GetTestWorld(); 
+        var mover = new ConstantSpeedMover(world);
+        mover.Move(move, 2);
+        Assert.AreEqual(expectedPosition, world.Position);
     }
 
-    private IMover GetMover()
+    private static World GetTestWorld()
     {
-        return new ConstantSpeedMover();
+        return new GameObject("TestWorld", typeof(World)).GetComponent<World>();
     }
 
-    private IWorld GetSimpleWorld()
+    [Test]
+    public void CharacterJumpTest()
     {
-        return new World();
+        var world = GetTestWorld();
+        var mover = new ConstantSpeedMover(world);
+        var playerControl = Substitute.For<IControl>().Jump.Returns(Observable.Return(Unit.Default));
+
     }
+
+    
 }
