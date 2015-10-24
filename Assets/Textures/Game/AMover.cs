@@ -1,5 +1,6 @@
 ﻿using System;
 using UniRx;
+using UnityEngine;
 using UnityEngine.Assertions.Must;
 
 public abstract class AMover
@@ -11,4 +12,6 @@ public abstract class AMover
         world.MustNotBeNull();
         _world = world;
     }
+
+    public abstract void Move(Vector3 speed, float time);
 }

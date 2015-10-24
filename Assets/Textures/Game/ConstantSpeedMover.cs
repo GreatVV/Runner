@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ConstantSpeedMover : AMover
 {
-    public void Move(Vector3 speed, float time)
+    public override void Move(Vector3 speed, float time)
     {
         _world.Position -= speed * time;
     }

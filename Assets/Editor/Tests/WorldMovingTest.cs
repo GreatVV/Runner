@@ -27,7 +27,11 @@ public class WorldMovingTest
     {
         var world = GetTestWorld();
         var mover = new ConstantSpeedMover(world);
-        var playerControl = Substitute.For<IControl>().Jump.Returns(Observable.Return(Unit.Default));
+        mover.Move(new Vector3(5,0,0), 1f);
+        var playerControl = Substitute.For<IControl>();
+        playerControl.Jump.Returns(Observable.Return(Unit.Default));
+        var character = new Character(playerControl);
+
 
     }
 
